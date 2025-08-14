@@ -3,55 +3,55 @@ import pandas as pd
 from datetime import datetime
 from gerador_loterias import GAMES, generate_lines, lines_to_dataframe
 
-st.set_page_config(page_title="Gerador de Loterias (UK)", page_icon="🎟️", layout="centered")
+st.set_page_config(page_title="Lottery Number Generator (UK)", page_icon="🎟️", layout="centered")
 
-st.title("🎟️ Gerador de Números — EuroMillions, Lotto, Set For Life")
-st.caption("Projeto didático: gere combinações aleatórias para os principais jogos do Reino Unido.")
+st.title("🎟️ Lottery Number Generator — EuroMillions, Lotto, Set For Life")
+st.caption("Educational project: generate random combinations for the main UK lottery games.")
 
 with st.sidebar:
-    st.header("Configurações")
+    st.header("Settings")
     game_key = st.selectbox(
-        "Jogo",
+        "Game",
         options=list(GAMES.keys()),
         format_func=lambda k: GAMES[k].name
     )
-    qnt = st.number_input("Quantidade de linhas", min_value=1, max_value=50, value=5, step=1)
-    evitar_linhas_duplicadas = st.toggle("Evitar linhas duplicadas no lote", value=True)
-    seed_opt = st.text_input("Semente (opcional, para reproduzir resultados)", value="")
+    qnt = st.number_input("Number of lines", min_value=1, max_value=50, value=5, step=1)
+    avoid_duplicates = st.toggle("Avoid duplicate lines in batch", value=True)
+    seed_opt = st.text_input("Seed (optional, for reproducible results)", value="")
     seed = seed_opt.strip() if seed_opt.strip() else None
-    gerar = st.button("Gerar combinações", type="primary", use_container_width=True)
+    generate = st.button("Generate combinations", type="primary", use_container_width=True)
 
-if gerar:
-    lines = generate_lines(game_key, n_lines=int(qnt), unique_lines=evitar_linhas_duplicadas, seed=seed)
+if generate:
+    lines = generate_lines(game_key, n_lines=int(qnt), unique_lines=avoid_duplicates, seed=seed)
     spec = GAMES[game_key]
     df = lines_to_dataframe(lines, spec)
-    st.subheader(f"Resultados — {spec.name}")
+    st.subheader(f"Results — {spec.name}")
     st.dataframe(df, use_container_width=True)
 
-    # Texto simples para copiar
+    # Copyable text
     as_text = "\n".join([", ".join(map(str, row)) for row in df.values.tolist()])
     st.code(as_text, language="text")
 
-    # Download CSV
+    # CSV download
     ts = datetime.now().strftime("%Y%m%d-%H%M%S")
     filename = f"picks_{game_key}_{ts}.csv"
     st.download_button(
-        label="Baixar CSV",
+        label="Download CSV",
         data=df.to_csv(index=False).encode("utf-8"),
         file_name=filename,
         mime="text/csv",
         use_container_width=True
     )
 
-    st.info("⚠️ Aviso: Isto é apenas para fins educacionais/diversão. Jogos de azar envolvem riscos. Jogue com responsabilidade.")
+    st.info("⚠️ Disclaimer: This is for educational/entertainment purposes only. Gambling involves risks. Play responsibly.")
 else:
-    st.write("Escolha um **jogo** na barra lateral, ajuste a **quantidade de linhas** e clique em **Gerar combinações**.")
+    st.write("Choose a **game** from the sidebar, set the **number of lines**, and click **Generate combinations**.")
 
-with st.expander("ℹ️ Sobre os jogos"):
+with st.expander("ℹ️ About the games"):
     st.markdown(
         """
-        **EuroMillions**: 5 números (1–50) + 2 Lucky Stars (1–12)  
-        **Lotto (UK)**: 6 números (1–59)  
-        **Set For Life**: 5 números (1–47) + 1 Life Ball (1–10)
+        **EuroMillions**: 5 numbers (1–50) + 2 Lucky Stars (1–12)  
+        **Lotto (UK)**: 6 numbers (1–59)  
+        **Set For Life**: 5 numbers (1–47) + 1 Life Ball (1–10)
         """
     )
