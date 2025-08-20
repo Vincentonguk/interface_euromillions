@@ -10,3 +10,45 @@ Untracked files:
 nothing added to commit but untracked files present (use "git add" to track)
 
 [2025-07-23T01:19:58.731455] Rodando comando: git add .
+[2025-07-23T01:19:58.800081] Rodando comando: git commit -m "deploy by SelfBot 3.0"
+[2025-07-23T01:19:58.902195] [main 8a6f623] deploy by SelfBot 3.0
+ 1 file changed, 12 insertions(+)
+ create mode 100644 selfbot.log
+
+[2025-07-23T01:19:58.902865] Rodando comando: git push
+[2025-07-23T01:20:06.057026] To https://github.com/Vincentonguk/interface_euromillions.git
+   c77b87a..8a6f623  main -> main
+
+[2025-07-23T01:20:06.057568] Missão concluída.
+[2025-07-23T01:40:45.199497] Pasta interface_euromillions criada.
+[2025-08-20T17:41:01.827295] Arquivo interface_euromillions (1).py já existe.
+[2025-08-20T17:41:01.827701] Rodando comando: git status
+[2025-08-20T17:41:01.942254] On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   interface_euromillions (1).py
+	modified:   interface_euromillions/interface_euromillions/interface_euromillions/interface_euromillions/interface_euromillions/interface_euromillions/selfbot.log
+	modified:   interface_euromillions/interface_euromillions/interface_euromillions/interface_euromillions/selfbot.log
+	modified:   selfbot.log
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	__pycache__/
+	assets/
+	avatar_app.py
+	interface_euromillions/interface_euromillions (1).py
+	interface_euromillions/interface_euromillions/interface_euromillions (1).py
+	interface_euromillions/interface_euromillions/interface_euromillions/interface_euromillions (1).py
+	interface_euromillions/interface_euromillions/interface_euromillions/interface_euromillions/interface_euromillions/interface_euromillions (1).py
+	interface_euromillions/interface_euromillions/interface_euromillions/interface_euromillions/interface_euromillions/selfbot.log
+	interface_euromillions/interface_euromillions/interface_euromillions/selfbot.log
+	interface_euromillions/interface_euromillions/selfbot.log
+	interface_euromillions/selfbot.log
+	selfbot4.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+[2025-08-20T17:41:01.942461] Rodando comando: git add .
